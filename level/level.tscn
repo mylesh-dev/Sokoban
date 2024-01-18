@@ -42,5 +42,5 @@ layer_3/tile_data = PackedInt32Array()
 position = Vector2(440, 316)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(275, 273)
+position = Vector2(0, -1)
 zoom = Vector2(1.2, 1.2)
