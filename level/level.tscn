@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://gdeufnmg54dq"]
+[gd_scene load_steps=6 format=3 uid="uid://gdeufnmg54dq"]
 
 [ext_resource type="Texture2D" uid="uid://ds25x2t8e2o25" path="res://assets/spritesheet.png" id="1_4eo1u"]
+[ext_resource type="Script" path="res://level/level.gd" id="1_ykhgq"]
 [ext_resource type="PackedScene" uid="uid://sfjds3at16b7" path="res://player/player.tscn" id="2_khytq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tjurs"]
@@ -23,6 +24,7 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_tjurs")
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_ykhgq")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_w5vwp")
@@ -40,5 +42,5 @@ layer_3/tile_data = PackedInt32Array()
 position = Vector2(440, 316)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(474, 298)
+position = Vector2(275, 273)
 zoom = Vector2(1.2, 1.2)

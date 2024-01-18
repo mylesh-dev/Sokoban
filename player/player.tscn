@@ -44,3 +44,4 @@ animation = &"idle"
 autoplay = "idle"
 frame = 3
 frame_progress = 0.161632
+offset = Vector2(18, 12)
