@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmncn7ywmew8w"]
+
+[ext_resource type="Script" path="res://main/main.gd" id="1_3ig4l"]
+[ext_resource type="Texture2D" uid="uid://hjkl3smnjfk1" path="res://assets/Gray.png" id="1_wtc5a"]
+[ext_resource type="LabelSettings" uid="uid://d0spf6s51hwci" path="res://assets/LG_title_96.tres" id="2_imwj3"]
+
+[node name="Main" type="CanvasLayer"]
+script = ExtResource("1_3ig4l")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wtc5a")
+stretch_mode = 1
+
+[node name="MC" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VB" type="VBoxContainer" parent="MC"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VB"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SOKOBAN (ish)"
+label_settings = ExtResource("2_imwj3")
+
+[node name="GridContainer" type="GridContainer" parent="MC/VB"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 6

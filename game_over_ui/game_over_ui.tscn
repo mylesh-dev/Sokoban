@@ -1,0 +1,166 @@
+[gd_scene load_steps=10 format=3 uid="uid://jxvmdg30wlwe"]
+
+[ext_resource type="Script" path="res://game_over_ui/game_over_ui.gd" id="1_2t2sn"]
+[ext_resource type="Texture2D" uid="uid://dyte8yewpw8m6" path="res://assets/Purple.png" id="1_8r7qb"]
+[ext_resource type="Texture2D" uid="uid://b6exqqud2bxk4" path="res://assets/panel_beigeLight.png" id="2_rbexi"]
+[ext_resource type="LabelSettings" uid="uid://d0spf6s51hwci" path="res://assets/LG_title_96.tres" id="3_tnpj7"]
+[ext_resource type="FontFile" uid="uid://cix1uk3mmq35f" path="res://assets/LuckiestGuy-Regular.ttf" id="4_bhyf0"]
+[ext_resource type="FontFile" uid="uid://dso2s0ilalm8n" path="res://assets/gemunu-libre-v8-latin-700.ttf" id="6_5wwol"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2hpq"]
+font = ExtResource("4_bhyf0")
+font_size = 48
+outline_size = 18
+outline_color = Color(0.368627, 0.380392, 0.85098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ntsqx"]
+font = ExtResource("4_bhyf0")
+font_size = 32
+font_color = Color(0.992157, 0.831373, 0.54902, 1)
+outline_size = 18
+outline_color = Color(0.368627, 0.380392, 0.85098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ieuph"]
+font = ExtResource("6_5wwol")
+font_size = 32
+font_color = Color(1, 1, 1, 0.431373)
+shadow_size = 3
+shadow_color = Color(0.294118, 0.294118, 0.294118, 1)
+
+[node name="GameOverUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2t2sn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8r7qb")
+stretch_mode = 1
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="NP" type="NinePatchRect" parent="MC"]
+layout_mode = 2
+texture = ExtResource("2_rbexi")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MC" type="MarginContainer" parent="MC/NP"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VB" type="VBoxContainer" parent="MC/NP/MC"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/NP/MC/VB"]
+layout_mode = 2
+text = "LEVEL COMPLETE"
+label_settings = ExtResource("3_tnpj7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="MC/NP/MC/VB"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MovesLabel" type="Label" parent="MC/NP/MC/VB"]
+layout_mode = 2
+text = "N MOVES TAKEN"
+label_settings = SubResource("LabelSettings_l2hpq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecordLabel" type="Label" parent="MC/NP/MC/VB"]
+layout_mode = 2
+text = "A New record!"
+label_settings = SubResource("LabelSettings_ntsqx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="MC/NP/MC/VB"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MC2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -88.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VB2" type="VBoxContainer" parent="MC2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HB4" type="HBoxContainer" parent="MC2/VB2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC2/VB2/HB4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Quit:"
+label_settings = SubResource("LabelSettings_ieuph")
+vertical_alignment = 1
+
+[node name="QuitLabel" type="Label" parent="MC2/VB2/HB4"]
+layout_mode = 2
+text = "Q/Esc"
+label_settings = SubResource("LabelSettings_ieuph")
+vertical_alignment = 1
+
+[node name="HB5" type="HBoxContainer" parent="MC2/VB2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC2/VB2/HB5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Restart"
+label_settings = SubResource("LabelSettings_ieuph")
+vertical_alignment = 1
+
+[node name="RestartLabel" type="Label" parent="MC2/VB2/HB5"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "R"
+label_settings = SubResource("LabelSettings_ieuph")
+vertical_alignment = 1

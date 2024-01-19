@@ -1,0 +1,135 @@
+[gd_scene load_steps=5 format=3 uid="uid://tga4y8wmqxfc"]
+
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_u54r4"]
+[ext_resource type="LabelSettings" uid="uid://bi5mvoa0lrwyv" path="res://assets/GM_white_32.tres" id="1_xlhxw"]
+[ext_resource type="FontFile" uid="uid://dso2s0ilalm8n" path="res://assets/gemunu-libre-v8-latin-700.ttf" id="3_n8hli"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0jm3q"]
+font = ExtResource("3_n8hli")
+font_size = 32
+font_color = Color(1, 1, 1, 0.431373)
+shadow_size = 3
+shadow_color = Color(0.294118, 0.294118, 0.294118, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u54r4")
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+
+[node name="VB" type="VBoxContainer" parent="MC"]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VB/HB"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Level"
+label_settings = ExtResource("1_xlhxw")
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="MC/VB/HB"]
+layout_mode = 2
+text = "00"
+label_settings = ExtResource("1_xlhxw")
+vertical_alignment = 1
+
+[node name="HB2" type="HBoxContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VB/HB2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Moves"
+label_settings = ExtResource("1_xlhxw")
+vertical_alignment = 1
+
+[node name="MovesLabel" type="Label" parent="MC/VB/HB2"]
+layout_mode = 2
+text = "00"
+label_settings = ExtResource("1_xlhxw")
+vertical_alignment = 1
+
+[node name="HB3" type="HBoxContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VB/HB3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Best
+"
+label_settings = ExtResource("1_xlhxw")
+vertical_alignment = 1
+
+[node name="BestLabel" type="Label" parent="MC/VB/HB3"]
+layout_mode = 2
+text = "00"
+label_settings = ExtResource("1_xlhxw")
+vertical_alignment = 1
+
+[node name="MC2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -158.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VB2" type="VBoxContainer" parent="MC2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HB4" type="HBoxContainer" parent="MC2/VB2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC2/VB2/HB4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Quit:"
+label_settings = SubResource("LabelSettings_0jm3q")
+vertical_alignment = 1
+
+[node name="QuitLabel" type="Label" parent="MC2/VB2/HB4"]
+layout_mode = 2
+text = "Q/Esc"
+label_settings = SubResource("LabelSettings_0jm3q")
+vertical_alignment = 1
+
+[node name="HB5" type="HBoxContainer" parent="MC2/VB2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC2/VB2/HB5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Restart"
+label_settings = SubResource("LabelSettings_0jm3q")
+vertical_alignment = 1
+
+[node name="RestartLabel" type="Label" parent="MC2/VB2/HB5"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "R"
+label_settings = SubResource("LabelSettings_0jm3q")
+vertical_alignment = 1
