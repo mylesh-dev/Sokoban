@@ -4,6 +4,8 @@ extends Node2D
 @onready var tile_map = $TileMap
 @onready var player = $Player
 @onready var camera_2d = $Camera2D
+@onready var hud = $CanvasLayer/HUD
+@onready var game_over_ui = $CanvasLayer/GameOverUI
 
 
 const FLOOR_LAYER = 0
@@ -38,6 +40,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
+	if Input.is_action_just_pressed("exit") == true:
+		GameManager.load_main_scene()
+	
+	if Input.is_action_just_pressed("reload") == true:
+		setup_level()
+	
+	hud.set_moves_label(_total_moves)
+	
 	if _moving == true:
 		return
 	
@@ -53,10 +63,8 @@ func _process(delta):
 		move_direction = Vector2i.UP
 	if Input.is_action_just_pressed("down") == true:
 		move_direction = Vector2i.DOWN
-	if Input.is_action_just_pressed("reload") == true:
-		pass
-	if Input.is_action_just_pressed("exit") == true:
-		pass
+	
+
 	
 	if move_direction != Vector2i.ZERO:
 		player_move(move_direction)
@@ -70,6 +78,15 @@ func place_player_on_tile(tile_coord: Vector2i):
 	player.global_position = new_pos
 
 # GAME LOGIC
+
+func check_game_state() -> void:
+	for t in tile_map.get_used_cells(TARGET_LAYER):
+		if cell_is_box(t) == false:
+			return
+		
+	game_over_ui.game_over(GameManager.get_level_selected(), _total_moves)
+	hud.hide()
+	ScoreSync.level_completed(GameManager.get_level_selected(), _total_moves)
 
 func move_box(box_tile: Vector2i, direction: Vector2i) -> void:
 	var dest = box_tile + direction
@@ -108,25 +125,18 @@ func player_move(direction: Vector2i):
 	
 	_moving = true
 	
-	print("direction:", direction)
-	print("player_tile:", player_tile)
-	print("new_tile:", new_tile)
-	
 	if cell_is_wall(new_tile) == true:
 		can_move = false
-		print("wall_seen")
 	if cell_is_box(new_tile) == true:
 		box_seen = true
 		can_move = box_can_move(new_tile, direction)
-		print("box_seen")
 	
 	if can_move == true:
-		print("can move")
 		_total_moves += 1
 		if box_seen == true:
 			move_box(new_tile, direction)
 		place_player_on_tile(new_tile)
-	
+		check_game_state()
 	
 	_moving = false
 
@@ -159,16 +169,20 @@ func add_layer_tiles(layer_tiles, layer_name: String) -> void:
 
 func setup_level() -> void:
 	tile_map.clear()
-	var level_data = GameData.get_data_for_level("2")
+	var ln = GameManager.get_level_selected()
+	var level_data = GameData.get_data_for_level(ln)
 	var level_tiles = level_data.tiles
 	var player_start = level_data.player_start
-	print("player_start:", player_start)
+	
+	_total_moves = 0
 	
 	for layer_name in LAYER_MAP.keys():
 		add_layer_tiles(level_tiles[layer_name], layer_name)
 	
 	place_player_on_tile(Vector2i(player_start.x, player_start.y))
 	move_camera()
+	hud.new_game(ln)
+	game_over_ui.new_game()
 
 
 func move_camera() -> void:
